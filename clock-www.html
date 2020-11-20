@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+ 
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Www's clock</title>
+    <style>
+        .clock {
+            width: 600px;
+            height: 600px;
+            margin:  auto;
+            /* 表盘背景 */
+            background: url(images/0.png) no-repeat;
+            position: relative;
+            background-size:cover;
+        }
+ 
+        .clock div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 时针图片 */
+        }
+      
+       #h img{
+           position: absolute;
+           bottom: 284px;
+           left: 50%;
+           transform: translate(-50%);
+        }
+        #m img{
+            position: absolute;
+           bottom: 296px;
+           left: 50%;
+           transform: translate(-50%);
+        }
+        #s img{
+            position: absolute;
+           bottom: 296px;
+           left: 50%;
+           transform: translate(-50%);
+        }
+        
+    </style>
+</head>
+ 
+<body>
+    <div class="clock">
+        <div id="h">
+            <img src="images/1.png" alt="">
+        </div>
+        <div id="m">
+            <img src="images/2.png" alt="">
+        </div>
+        <div id="s">
+            <img src="images/3.png" alt="">
+        </div>
+    </div>
+ 
+    <script>
+        // 获取元素
+        var h = document.getElementById("h");//时
+        var m = document.getElementById("m");//分
+        var s = document.getElementById("s");//秒
+        var timer = null;
+ 
+        // 根据当前的时间实时的修改每个盒子的旋转角度
+        timer = setInterval(function () {
+            var date = new Date();
+ 
+            // 根据当前date的每个时间部分,计算盒子运动的角度
+ 
+            // 每小时  360/12  30度/小时
+            h.style.transform = "rotate(" + date.getHours() * 30 + "deg)";
+ 
+            // 每分钟 360/60   6度/分钟
+            m.style.transform = "rotate(" + date.getMinutes() * 6 + "deg)";
+ 
+            // 每秒 360/60   6度/秒
+            s.style.transform = "rotate(" + date.getSeconds() * 6 + "deg)";
+ 
+        }, 1000);
+    </script>
+</body>
+ 
+</html>
